@@ -1,0 +1,309 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		15C52A301759A9A300152825 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C52A2F1759A9A300152825 /* Cocoa.framework */; };
+		15C52A3A1759A9A300152825 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15C52A381759A9A300152825 /* InfoPlist.strings */; };
+		15C52A3C1759A9A300152825 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C52A3B1759A9A300152825 /* main.m */; };
+		15C52A401759A9A300152825 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 15C52A3E1759A9A300152825 /* Credits.rtf */; };
+		15C52A431759A9A300152825 /* BPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C52A421759A9A300152825 /* BPAppDelegate.m */; };
+		15C52A461759A9A300152825 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15C52A441759A9A300152825 /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		15C52A2C1759A9A300152825 /* Mahjong Solitaire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mahjong Solitaire.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		15C52A2F1759A9A300152825 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		15C52A321759A9A300152825 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		15C52A331759A9A300152825 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		15C52A341759A9A300152825 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		15C52A371759A9A300152825 /* Mahjong Solitaire-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Mahjong Solitaire-Info.plist"; sourceTree = "<group>"; };
+		15C52A391759A9A300152825 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		15C52A3B1759A9A300152825 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		15C52A3D1759A9A300152825 /* Mahjong Solitaire-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mahjong Solitaire-Prefix.pch"; sourceTree = "<group>"; };
+		15C52A3F1759A9A300152825 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		15C52A411759A9A300152825 /* BPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPAppDelegate.h; sourceTree = "<group>"; };
+		15C52A421759A9A300152825 /* BPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPAppDelegate.m; sourceTree = "<group>"; };
+		15C52A451759A9A300152825 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		15C52A291759A9A300152825 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15C52A301759A9A300152825 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		15C52A231759A9A200152825 = {
+			isa = PBXGroup;
+			children = (
+				15C52A351759A9A300152825 /* Mahjong Solitaire */,
+				15C52A2E1759A9A300152825 /* Frameworks */,
+				15C52A2D1759A9A300152825 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		15C52A2D1759A9A300152825 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				15C52A2C1759A9A300152825 /* Mahjong Solitaire.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		15C52A2E1759A9A300152825 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				15C52A2F1759A9A300152825 /* Cocoa.framework */,
+				15C52A311759A9A300152825 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		15C52A311759A9A300152825 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				15C52A321759A9A300152825 /* AppKit.framework */,
+				15C52A331759A9A300152825 /* CoreData.framework */,
+				15C52A341759A9A300152825 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		15C52A351759A9A300152825 /* Mahjong Solitaire */ = {
+			isa = PBXGroup;
+			children = (
+				15C52A411759A9A300152825 /* BPAppDelegate.h */,
+				15C52A421759A9A300152825 /* BPAppDelegate.m */,
+				15C52A441759A9A300152825 /* MainMenu.xib */,
+				15C52A361759A9A300152825 /* Supporting Files */,
+			);
+			path = "Mahjong Solitaire";
+			sourceTree = "<group>";
+		};
+		15C52A361759A9A300152825 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				15C52A371759A9A300152825 /* Mahjong Solitaire-Info.plist */,
+				15C52A381759A9A300152825 /* InfoPlist.strings */,
+				15C52A3B1759A9A300152825 /* main.m */,
+				15C52A3D1759A9A300152825 /* Mahjong Solitaire-Prefix.pch */,
+				15C52A3E1759A9A300152825 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		15C52A2B1759A9A300152825 /* Mahjong Solitaire */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15C52A491759A9A300152825 /* Build configuration list for PBXNativeTarget "Mahjong Solitaire" */;
+			buildPhases = (
+				15C52A281759A9A300152825 /* Sources */,
+				15C52A291759A9A300152825 /* Frameworks */,
+				15C52A2A1759A9A300152825 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Mahjong Solitaire";
+			productName = "Mahjong Solitaire";
+			productReference = 15C52A2C1759A9A300152825 /* Mahjong Solitaire.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		15C52A241759A9A200152825 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = BP;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Bruno Philipe";
+			};
+			buildConfigurationList = 15C52A271759A9A200152825 /* Build configuration list for PBXProject "Mahjong Solitaire" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 15C52A231759A9A200152825;
+			productRefGroup = 15C52A2D1759A9A300152825 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				15C52A2B1759A9A300152825 /* Mahjong Solitaire */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		15C52A2A1759A9A300152825 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15C52A3A1759A9A300152825 /* InfoPlist.strings in Resources */,
+				15C52A401759A9A300152825 /* Credits.rtf in Resources */,
+				15C52A461759A9A300152825 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		15C52A281759A9A300152825 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15C52A3C1759A9A300152825 /* main.m in Sources */,
+				15C52A431759A9A300152825 /* BPAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		15C52A381759A9A300152825 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15C52A391759A9A300152825 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		15C52A3E1759A9A300152825 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15C52A3F1759A9A300152825 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		15C52A441759A9A300152825 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15C52A451759A9A300152825 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		15C52A471759A9A300152825 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		15C52A481759A9A300152825 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		15C52A4A1759A9A300152825 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Mahjong Solitaire/Mahjong Solitaire-Prefix.pch";
+				INFOPLIST_FILE = "Mahjong Solitaire/Mahjong Solitaire-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		15C52A4B1759A9A300152825 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Mahjong Solitaire/Mahjong Solitaire-Prefix.pch";
+				INFOPLIST_FILE = "Mahjong Solitaire/Mahjong Solitaire-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		15C52A271759A9A200152825 /* Build configuration list for PBXProject "Mahjong Solitaire" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15C52A471759A9A300152825 /* Debug */,
+				15C52A481759A9A300152825 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15C52A491759A9A300152825 /* Build configuration list for PBXNativeTarget "Mahjong Solitaire" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15C52A4A1759A9A300152825 /* Debug */,
+				15C52A4B1759A9A300152825 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 15C52A241759A9A200152825 /* Project object */;
+}
