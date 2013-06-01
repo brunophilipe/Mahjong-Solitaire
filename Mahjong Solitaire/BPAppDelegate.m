@@ -7,13 +7,9 @@
 //
 
 #import "BPAppDelegate.h"
+#import "BPTile.h"
 
 @implementation BPAppDelegate
-
-- (void)dealloc
-{
-    [super dealloc];
-}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15300087175A61A600193D50 /* BPTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 15300086175A61A600193D50 /* BPTile.m */; };
+		1530008A175A7F5C00193D50 /* BPGameSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 15300089175A7F5C00193D50 /* BPGameSettings.m */; };
+		1530008C175A900800193D50 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1530008B175A900800193D50 /* README.md */; };
 		15C52A301759A9A300152825 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C52A2F1759A9A300152825 /* Cocoa.framework */; };
 		15C52A3A1759A9A300152825 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15C52A381759A9A300152825 /* InfoPlist.strings */; };
 		15C52A3C1759A9A300152825 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C52A3B1759A9A300152825 /* main.m */; };
@@ -16,6 +19,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15300085175A61A600193D50 /* BPTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BPTile.h; path = Controls/BPTile.h; sourceTree = "<group>"; };
+		15300086175A61A600193D50 /* BPTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BPTile.m; path = Controls/BPTile.m; sourceTree = "<group>"; };
+		15300088175A7F5C00193D50 /* BPGameSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPGameSettings.h; sourceTree = "<group>"; };
+		15300089175A7F5C00193D50 /* BPGameSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPGameSettings.m; sourceTree = "<group>"; };
+		1530008B175A900800193D50 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 		15C52A2C1759A9A300152825 /* Mahjong Solitaire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mahjong Solitaire.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15C52A2F1759A9A300152825 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		15C52A321759A9A300152825 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -43,6 +51,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1530007F175A60F700193D50 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		15300084175A618600193D50 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				15300085175A61A600193D50 /* BPTile.h */,
+				15300086175A61A600193D50 /* BPTile.m */,
+			);
+			name = Controls;
+			sourceTree = "<group>";
+		};
 		15C52A231759A9A200152825 = {
 			isa = PBXGroup;
 			children = (
@@ -82,8 +106,12 @@
 		15C52A351759A9A300152825 /* Mahjong Solitaire */ = {
 			isa = PBXGroup;
 			children = (
+				15300084175A618600193D50 /* Controls */,
+				1530007F175A60F700193D50 /* Images */,
 				15C52A411759A9A300152825 /* BPAppDelegate.h */,
 				15C52A421759A9A300152825 /* BPAppDelegate.m */,
+				15300088175A7F5C00193D50 /* BPGameSettings.h */,
+				15300089175A7F5C00193D50 /* BPGameSettings.m */,
 				15C52A441759A9A300152825 /* MainMenu.xib */,
 				15C52A361759A9A300152825 /* Supporting Files */,
 			);
@@ -93,6 +121,7 @@
 		15C52A361759A9A300152825 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1530008B175A900800193D50 /* README.md */,
 				15C52A371759A9A300152825 /* Mahjong Solitaire-Info.plist */,
 				15C52A381759A9A300152825 /* InfoPlist.strings */,
 				15C52A3B1759A9A300152825 /* main.m */,
@@ -157,6 +186,7 @@
 				15C52A3A1759A9A300152825 /* InfoPlist.strings in Resources */,
 				15C52A401759A9A300152825 /* Credits.rtf in Resources */,
 				15C52A461759A9A300152825 /* MainMenu.xib in Resources */,
+				1530008C175A900800193D50 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +199,8 @@
 			files = (
 				15C52A3C1759A9A300152825 /* main.m in Sources */,
 				15C52A431759A9A300152825 /* BPAppDelegate.m in Sources */,
+				15300087175A61A600193D50 /* BPTile.m in Sources */,
+				1530008A175A7F5C00193D50 /* BPGameSettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +294,7 @@
 		15C52A4A1759A9A300152825 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mahjong Solitaire/Mahjong Solitaire-Prefix.pch";
@@ -274,6 +307,7 @@
 		15C52A4B1759A9A300152825 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mahjong Solitaire/Mahjong Solitaire-Prefix.pch";
@@ -302,6 +336,7 @@
 				15C52A4B1759A9A300152825 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
