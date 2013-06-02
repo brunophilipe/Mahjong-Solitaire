@@ -19,7 +19,15 @@
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #import <Foundation/Foundation.h>
+#import "Controls/BPTile.h"
+#import "Controls/BPGameBoard.h"
 
 @interface BPRulesOperator : NSObject
+
++ (BPRulesOperator *)sharedInstance;
+
++ (void)setBoard:(BPGameBoard *)board;
+
++ (void)tryToSelectTile:(BPTile *)tile;
 
 @end

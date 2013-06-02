@@ -21,6 +21,7 @@
 
 #import "BPTile.h"
 #import "BPGameSettings.h"
+#import "BPRulesOperator.h"
 
 @implementation BPTile
 
@@ -60,6 +61,8 @@
 		[path lineToPoint:auxPoint];
 		[(NSColor *)[BPGameSettings getSetting:BPGAME_TILE_COLOR_SIDE] set];
 		[path fill];
+		[(NSColor *)[BPGameSettings getSetting:BPGAME_TILE_COLOR_LINE] set];
+		[path stroke];
 	}
 	[path removeAllPoints];
 	{// Draw bottom side
@@ -88,16 +91,7 @@
 		[path lineToPoint:auxPoint];
 		translPoint(&auxPoint, 0, -height + thickness);
 		[path lineToPoint:auxPoint];
-
-		if (self.selected)
-		{
-			[(NSColor *)[BPGameSettings getSetting:BPGAME_TILE_COLOR_SELECTED] set];
-		}
-		else
-		{
-			[(NSColor *)[BPGameSettings getSetting:BPGAME_TILE_COLOR_FACE] set];
-		}
-
+		[(NSColor *)[BPGameSettings getSetting:(self.selected ? BPGAME_TILE_COLOR_SELECTED : BPGAME_TILE_COLOR_FACE)] set];
 		[path fill];
 		[(NSColor *)[BPGameSettings getSetting:BPGAME_TILE_COLOR_LINE] set];
 		[path stroke];
@@ -106,7 +100,7 @@
 
 - (void)mouseUp:(NSEvent *)theEvent
 {
-	self.selected = !self.selected;
+	[BPRulesOperator tryToSelectTile:self];
 	[self setNeedsDisplay:YES];
 }
 

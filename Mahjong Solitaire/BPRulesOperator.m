@@ -21,5 +21,63 @@
 #import "BPRulesOperator.h"
 
 @implementation BPRulesOperator
+{
+	BPTile *selected_prev, *selected_now;
+	BPGameBoard *sharedBoard;
+}
+
++ (BPRulesOperator *)sharedInstance;
+{
+	static BPRulesOperator *instance;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		instance = [[BPRulesOperator alloc] init];
+	});
+	return instance;
+}
+
+- (id)init
+{
+	self = [super init];
+	selected_prev = nil;
+	selected_now = nil;
+	return self;
+}
+
++ (void)setBoard:(BPGameBoard *)board
+{
+	BPRulesOperator *opr = [BPRulesOperator sharedInstance];
+
+	opr->sharedBoard = board;
+}
+
++ (void)tryToSelectTile:(BPTile *)tile
+{
+	BPRulesOperator *opr = [BPRulesOperator sharedInstance];
+
+	if ([opr->sharedBoard isTileSelectable:tile]) {
+		[tile setSelected:YES];
+
+		opr->selected_prev = opr->selected_now;
+		opr->selected_now = tile;
+
+		if (opr->selected_now && opr->selected_prev && !(opr->selected_now == opr->selected_prev))
+		{
+			if (opr->selected_now.kind == opr->selected_prev.kind)
+			{
+				[opr->sharedBoard removeTile:opr->selected_prev];
+				[opr->sharedBoard removeTile:opr->selected_now];
+			}
+			else
+			{
+				[opr->selected_prev setSelected:NO];
+				[opr->selected_now setSelected:NO];
+			}
+
+			opr->selected_prev = nil;
+			opr->selected_now = nil;
+		}
+	}
+}
 
 @end

@@ -24,6 +24,8 @@
 @interface BPTile : NSView
 
 @property (strong, nonatomic) NSTextField *label;
+@property NSUInteger kind;
+@property NSPoint coords;
 @property BOOL selected;
 
 @end

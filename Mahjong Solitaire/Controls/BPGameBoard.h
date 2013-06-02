@@ -19,7 +19,11 @@
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #import <Cocoa/Cocoa.h>
+#import "BPTile.h"
 
 @interface BPGameBoard : NSView
+
+- (BOOL)isTileSelectable:(BPTile *)tile;
+- (void)removeTile:(BPTile *)tile;
 
 @end

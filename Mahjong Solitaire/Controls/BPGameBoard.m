@@ -19,8 +19,8 @@
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #import "BPGameBoard.h"
-#import "BPTile.h"
 #import "BPGameSettings.h"
+#import "BPRulesOperator.h"
 
 #define MAX_HOR 7
 #define MAX_VER 6
@@ -45,6 +45,7 @@ BOOL tile_base[MAX_VER][MAX_HOR] =
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code here.
+		[BPRulesOperator setBoard:self];
 		[self newGame];
     }
     
@@ -61,9 +62,8 @@ BOOL tile_base[MAX_VER][MAX_HOR] =
 		{
 			if (tile_base[y][x])
 			{
-				NSLog(@"%ld,%ld",(unsigned long)x,(long)y);
-
 				auxTile = [[BPTile alloc] initWithFrame:[self calculateRectForTileInCoordX:x andY:y]];
+				[auxTile setCoords:NSMakePoint(x, y)];
 				[auxTile.label setStringValue:[NSString stringWithFormat:@"%ld,%ld",(unsigned long)x,(long)y]];
 
 				tiles[y][x] = auxTile;
@@ -90,6 +90,33 @@ BOOL tile_base[MAX_VER][MAX_HOR] =
 		width,
 		height
 	);
+}
+
+- (BOOL)isTileSelectable:(BPTile *)tile
+{
+	NSInteger x = tile.coords.x;
+	NSInteger y = tile.coords.y;
+
+	//Check left
+	if (x == 0 || tiles[y][x-1] == nil) {
+		return YES;
+	}
+
+	//Check right
+	if (x == MAX_HOR-1 || tiles[y][x+1] == nil) {
+		return YES;
+	}
+
+	return NO;
+}
+
+- (void)removeTile:(BPTile *)tile
+{
+	[tile removeFromSuperview];
+
+	NSPoint coord = tile.coords;
+
+	tiles[(int)coord.y][(int)coord.x] = nil;
 }
 
 - (void)boardDidResize:(NSNotification *)n
