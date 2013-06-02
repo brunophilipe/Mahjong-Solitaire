@@ -23,4 +23,7 @@
 
 @interface BPTile : NSView
 
+@property (strong, nonatomic) NSTextField *label;
+@property BOOL selected;
+
 @end

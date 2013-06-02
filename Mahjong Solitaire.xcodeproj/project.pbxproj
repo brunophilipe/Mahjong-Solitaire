@@ -10,6 +10,8 @@
 		15300087175A61A600193D50 /* BPTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 15300086175A61A600193D50 /* BPTile.m */; };
 		1530008A175A7F5C00193D50 /* BPGameSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 15300089175A7F5C00193D50 /* BPGameSettings.m */; };
 		1530008C175A900800193D50 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1530008B175A900800193D50 /* README.md */; };
+		1530008F175A951000193D50 /* BPGameBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 1530008E175A951000193D50 /* BPGameBoard.m */; };
+		15300093175AC55E00193D50 /* BPRulesOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = 15300092175AC55E00193D50 /* BPRulesOperator.m */; };
 		15C52A301759A9A300152825 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C52A2F1759A9A300152825 /* Cocoa.framework */; };
 		15C52A3A1759A9A300152825 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15C52A381759A9A300152825 /* InfoPlist.strings */; };
 		15C52A3C1759A9A300152825 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C52A3B1759A9A300152825 /* main.m */; };
@@ -24,6 +26,10 @@
 		15300088175A7F5C00193D50 /* BPGameSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPGameSettings.h; sourceTree = "<group>"; };
 		15300089175A7F5C00193D50 /* BPGameSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPGameSettings.m; sourceTree = "<group>"; };
 		1530008B175A900800193D50 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
+		1530008D175A951000193D50 /* BPGameBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BPGameBoard.h; path = Controls/BPGameBoard.h; sourceTree = "<group>"; };
+		1530008E175A951000193D50 /* BPGameBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BPGameBoard.m; path = Controls/BPGameBoard.m; sourceTree = "<group>"; };
+		15300091175AC55E00193D50 /* BPRulesOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPRulesOperator.h; sourceTree = "<group>"; };
+		15300092175AC55E00193D50 /* BPRulesOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPRulesOperator.m; sourceTree = "<group>"; };
 		15C52A2C1759A9A300152825 /* Mahjong Solitaire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mahjong Solitaire.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15C52A2F1759A9A300152825 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		15C52A321759A9A300152825 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -51,18 +57,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1530007F175A60F700193D50 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Images;
-			sourceTree = "<group>";
-		};
 		15300084175A618600193D50 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
 				15300085175A61A600193D50 /* BPTile.h */,
 				15300086175A61A600193D50 /* BPTile.m */,
+				1530008D175A951000193D50 /* BPGameBoard.h */,
+				1530008E175A951000193D50 /* BPGameBoard.m */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -107,13 +108,14 @@
 			isa = PBXGroup;
 			children = (
 				15300084175A618600193D50 /* Controls */,
-				1530007F175A60F700193D50 /* Images */,
 				15C52A411759A9A300152825 /* BPAppDelegate.h */,
 				15C52A421759A9A300152825 /* BPAppDelegate.m */,
 				15300088175A7F5C00193D50 /* BPGameSettings.h */,
 				15300089175A7F5C00193D50 /* BPGameSettings.m */,
 				15C52A441759A9A300152825 /* MainMenu.xib */,
 				15C52A361759A9A300152825 /* Supporting Files */,
+				15300091175AC55E00193D50 /* BPRulesOperator.h */,
+				15300092175AC55E00193D50 /* BPRulesOperator.m */,
 			);
 			path = "Mahjong Solitaire";
 			sourceTree = "<group>";
@@ -201,6 +203,8 @@
 				15C52A431759A9A300152825 /* BPAppDelegate.m in Sources */,
 				15300087175A61A600193D50 /* BPTile.m in Sources */,
 				1530008A175A7F5C00193D50 /* BPGameSettings.m in Sources */,
+				1530008F175A951000193D50 /* BPGameBoard.m in Sources */,
+				15300093175AC55E00193D50 /* BPRulesOperator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

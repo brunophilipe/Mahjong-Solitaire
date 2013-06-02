@@ -1,5 +1,5 @@
 //
-//  BPGameSettings.h
+//  BPRulesOperator.m
 //  Mahjong Solitaire
 //
 //  Created by Bruno Philipe on 6/1/13.
@@ -17,20 +17,9 @@
 //
 //	You should have received a copy of the GNU General Public License
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//
 
-#import <Cocoa/Cocoa.h>
+#import "BPRulesOperator.h"
 
-typedef enum {
-	BPGAME_TILE_COLOR_SIDE, BPGAME_TILE_COLOR_BOTTOM, BPGAME_TILE_COLOR_FACE, BPGAME_TILE_COLOR_LINE, BPGAME_TILE_COLOR_SELECTED,
-	BPGAME_TILE_SIZE_WIDTH, BPGAME_TILE_SIZE_HEIGHT, BPGAME_TILE_SIZE_THICKNESS
-} BPGAME_SETTINGS;
-
-@interface BPGameSettings : NSObject
-
-+ (BPGameSettings *)sharedInstance;
-
-+ (id)getSetting:(BPGAME_SETTINGS)sett;
-
+@implementation BPRulesOperator
 
 @end

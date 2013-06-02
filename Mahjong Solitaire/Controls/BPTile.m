@@ -23,23 +23,19 @@
 #import "BPGameSettings.h"
 
 @implementation BPTile
-{
-	int tile_height;
-}
 
 - (id)initWithFrame:(NSRect)frameRect
 {
 	self = [super initWithFrame:frameRect];
 	if (self) {
 		//Initialize here
-		tile_height = 5;
+		self.label = [[NSTextField alloc] initWithFrame:NSMakeRect(10, 10, 40, 20)];
+		[self.label setEditable:NO];
+		[self addSubview:self.label];
+
+		self.selected = NO;
 	}
 	return self;
-}
-
-- (BOOL)isOpaque
-{
-	return NO;
 }
 
 - (void)drawRect:(NSRect)dirtyRect
@@ -47,22 +43,21 @@
 	NSBezierPath	*path = [NSBezierPath bezierPath];
 	NSPoint			auxPoint;
 
+	int width		= [[BPGameSettings getSetting:BPGAME_TILE_SIZE_WIDTH] intValue];
+	int height		= [[BPGameSettings getSetting:BPGAME_TILE_SIZE_HEIGHT] intValue];
+	int thickness	= [[BPGameSettings getSetting:BPGAME_TILE_SIZE_THICKNESS] intValue];
+
 	{// Draw left side
 		auxPoint = NSMakePoint(self.bounds.origin.x, self.bounds.origin.y);
 		[path moveToPoint:auxPoint];
-
-		translPoint(&auxPoint, 0, 75 - tile_height);
+		translPoint(&auxPoint, 0, height - thickness);
 		[path lineToPoint:auxPoint];
-
-		translPoint(&auxPoint, tile_height, tile_height);
+		translPoint(&auxPoint, thickness, thickness);
 		[path lineToPoint:auxPoint];
-
-		translPoint(&auxPoint, 0, -75 + tile_height);
+		translPoint(&auxPoint, 0, -height + thickness);
 		[path lineToPoint:auxPoint];
-
-		translPoint(&auxPoint, -tile_height, -tile_height);
+		translPoint(&auxPoint, -thickness, -thickness);
 		[path lineToPoint:auxPoint];
-
 		[(NSColor *)[BPGameSettings getSetting:BPGAME_TILE_COLOR_SIDE] set];
 		[path fill];
 	}
@@ -70,42 +65,49 @@
 	{// Draw bottom side
 		auxPoint = NSMakePoint(self.bounds.origin.x, self.bounds.origin.y);
 		[path moveToPoint:auxPoint];
-
-		translPoint(&auxPoint, 55 - tile_height, 0);
+		translPoint(&auxPoint, width - thickness, 0);
 		[path lineToPoint:auxPoint];
-
-		translPoint(&auxPoint, tile_height, tile_height);
+		translPoint(&auxPoint, thickness, thickness);
 		[path lineToPoint:auxPoint];
-
-		translPoint(&auxPoint, -55 + tile_height, 0);
+		translPoint(&auxPoint, -width + thickness, 0);
 		[path lineToPoint:auxPoint];
-
-		translPoint(&auxPoint, -tile_height, -tile_height);
+		translPoint(&auxPoint, -thickness, -thickness);
 		[path lineToPoint:auxPoint];
-
 		[(NSColor *)[BPGameSettings getSetting:BPGAME_TILE_COLOR_BOTTOM] set];
 		[path fill];
 	}
 	[path removeAllPoints];
 	{// Draw face
-		auxPoint = NSMakePoint(self.bounds.origin.x + tile_height, self.bounds.origin.y + tile_height);
+		auxPoint = NSMakePoint(self.bounds.origin.x + thickness, self.bounds.origin.y + thickness);
 		[path moveToPoint:auxPoint];
-
-		translPoint(&auxPoint, 55 - tile_height, 0);
+		translPoint(&auxPoint, width - thickness, 0);
+		[path lineToPoint:auxPoint];
+		translPoint(&auxPoint, 0, height - thickness);
+		[path lineToPoint:auxPoint];
+		translPoint(&auxPoint, -width + thickness, 0);
+		[path lineToPoint:auxPoint];
+		translPoint(&auxPoint, 0, -height + thickness);
 		[path lineToPoint:auxPoint];
 
-		translPoint(&auxPoint, 0, 75 - tile_height);
-		[path lineToPoint:auxPoint];
+		if (self.selected)
+		{
+			[(NSColor *)[BPGameSettings getSetting:BPGAME_TILE_COLOR_SELECTED] set];
+		}
+		else
+		{
+			[(NSColor *)[BPGameSettings getSetting:BPGAME_TILE_COLOR_FACE] set];
+		}
 
-		translPoint(&auxPoint, -55 + tile_height, 0);
-		[path lineToPoint:auxPoint];
-
-		translPoint(&auxPoint, 0, -75 + tile_height);
-		[path lineToPoint:auxPoint];
-
-		[(NSColor *)[BPGameSettings getSetting:BPGAME_TILE_COLOR_FACE] set];
 		[path fill];
+		[(NSColor *)[BPGameSettings getSetting:BPGAME_TILE_COLOR_LINE] set];
+		[path stroke];
 	}
+}
+
+- (void)mouseUp:(NSEvent *)theEvent
+{
+	self.selected = !self.selected;
+	[self setNeedsDisplay:YES];
 }
 
 void translPoint(NSPoint *p, int x, int y) { p->x += x; p->y += y; }

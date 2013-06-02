@@ -23,7 +23,8 @@
 
 @implementation BPGameSettings
 {
-	NSColor *tile_color_side, *tile_color_bott, *tile_color_frnt;
+	NSColor *tile_color_side, *tile_color_bott, *tile_color_frnt, *tile_color_line, *tile_color_slct;
+	NSNumber *tile_width, *tile_height, *tile_thickness;
 }
 
 + (BPGameSettings *)sharedInstance
@@ -43,6 +44,12 @@
 		tile_color_side = [NSColor colorWithSRGBRed:0.87 green:0.84 blue:0.75 alpha:1.0];
 		tile_color_bott = [NSColor colorWithSRGBRed:0.59 green:0.57 blue:0.50 alpha:1.0];
 		tile_color_frnt = [NSColor colorWithSRGBRed:0.82 green:0.81 blue:0.77 alpha:1.0];
+		tile_color_line = [NSColor colorWithSRGBRed:0.74 green:0.73 blue:0.66 alpha:1.0];
+		tile_color_slct = [NSColor colorWithSRGBRed:0.80 green:0.76 blue:0.49 alpha:1.0];
+
+		tile_width		= [NSNumber numberWithUnsignedInteger:55];
+		tile_height		= [NSNumber numberWithUnsignedInteger:75];
+		tile_thickness	= [NSNumber numberWithUnsignedInteger:5];
 	}
 	return self;
 }
@@ -54,15 +61,27 @@
 	switch (sett) {
 		case BPGAME_TILE_COLOR_BOTTOM:
 			return settings->tile_color_bott;
-			break;
 
 		case BPGAME_TILE_COLOR_SIDE:
 			return settings->tile_color_side;
-			break;
 
 		case BPGAME_TILE_COLOR_FACE:
 			return settings->tile_color_frnt;
-			break;
+
+		case BPGAME_TILE_COLOR_LINE:
+			return settings->tile_color_line;
+
+		case BPGAME_TILE_COLOR_SELECTED:
+			return settings->tile_color_slct;
+
+		case BPGAME_TILE_SIZE_HEIGHT:
+			return settings->tile_height;
+
+		case BPGAME_TILE_SIZE_WIDTH:
+			return settings->tile_width;
+
+		case BPGAME_TILE_SIZE_THICKNESS:
+			return settings->tile_thickness;
 
 		default:
 			return nil;
