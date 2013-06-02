@@ -32,6 +32,7 @@
 		//Initialize here
 		self.label = [[NSTextField alloc] initWithFrame:NSMakeRect(10, 10, 40, 20)];
 		[self.label setEditable:NO];
+		[self.label setBordered:NO];
 		[self addSubview:self.label];
 
 		self.selected = NO;
@@ -100,8 +101,13 @@
 
 - (void)mouseUp:(NSEvent *)theEvent
 {
-	[BPRulesOperator tryToSelectTile:self];
-	[self setNeedsDisplay:YES];
+	int thickness = [[BPGameSettings getSetting:BPGAME_TILE_SIZE_THICKNESS] intValue];
+	NSPoint event_location = [theEvent locationInWindow];
+	NSPoint local_point = [self convertPoint:event_location fromView:nil];
+
+	if (local_point.x > thickness && local_point.y > thickness) {
+		[BPRulesOperator tryToSelectTile:self];
+	}
 }
 
 void translPoint(NSPoint *p, int x, int y) { p->x += x; p->y += y; }

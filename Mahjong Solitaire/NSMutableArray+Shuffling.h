@@ -1,5 +1,5 @@
 //
-//  BPTile.h
+//  NSMutableArray+Shuffling.h
 //  Mahjong Solitaire
 //
 //  Created by Bruno Philipe on 6/1/13.
@@ -17,15 +17,11 @@
 //
 //	You should have received a copy of the GNU General Public License
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
-@interface BPTile : NSView
+@interface NSMutableArray (Shuffling)
 
-@property (strong, nonatomic) NSTextField *label;
-@property NSInteger kind;
-@property NSPoint coords;
-@property BOOL selected;
+- (void)shuffle;
 
 @end

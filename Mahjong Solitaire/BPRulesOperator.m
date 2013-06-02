@@ -57,6 +57,7 @@
 
 	if ([opr->sharedBoard isTileSelectable:tile]) {
 		[tile setSelected:YES];
+		[opr->sharedBoard setNeedsDisplay:YES];
 
 		opr->selected_prev = opr->selected_now;
 		opr->selected_now = tile;
