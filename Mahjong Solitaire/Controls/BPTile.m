@@ -92,7 +92,7 @@
 		[path lineToPoint:auxPoint];
 		translPoint(&auxPoint, 0, -height + thickness);
 		[path lineToPoint:auxPoint];
-		[(NSColor *)[BPGameSettings getSetting:(self.selected ? BPGAME_TILE_COLOR_SELECTED : BPGAME_TILE_COLOR_FACE)] set];
+		[[self lightenColor:(NSColor *)[BPGameSettings getSetting:(self.selected ? BPGAME_TILE_COLOR_SELECTED : BPGAME_TILE_COLOR_FACE)] iterations:self.coords.z] set];
 		[path fill];
 		[(NSColor *)[BPGameSettings getSetting:BPGAME_TILE_COLOR_LINE] set];
 		[path stroke];
@@ -108,6 +108,19 @@
 	if (local_point.x > thickness && local_point.y > thickness) {
 		[BPRulesOperator tryToSelectTile:self];
 	}
+}
+
+- (NSColor *)lightenColor:(NSColor *)color iterations:(NSUInteger)it
+{
+	CGFloat saturation	= color.saturationComponent;
+	CGFloat brightness	= color.brightnessComponent;
+
+	for (NSUInteger i=0; i<it; i++) {
+		saturation *= 0.9;
+		brightness *= 1.1;
+	}
+
+	return [NSColor colorWithCalibratedHue:color.hueComponent saturation:saturation brightness:brightness alpha:color.alphaComponent];
 }
 
 void translPoint(NSPoint *p, int x, int y) { p->x += x; p->y += y; }
