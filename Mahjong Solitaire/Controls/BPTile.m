@@ -24,20 +24,40 @@
 #import "BPRulesOperator.h"
 
 @implementation BPTile
+{
+	NSInteger _kind;
+}
 
 - (id)initWithFrame:(NSRect)frameRect
 {
 	self = [super initWithFrame:frameRect];
 	if (self) {
 		//Initialize here
+		/*
 		self.label = [[NSTextField alloc] initWithFrame:NSMakeRect(10, 10, 40, 20)];
 		[self.label setEditable:NO];
 		[self.label setBordered:NO];
 		[self addSubview:self.label];
+		 */
 
 		self.selected = NO;
 	}
 	return self;
+}
+
+- (void)setKind:(NSInteger)kind
+{
+	_kind = kind;
+
+	self.icon = [[NSImageView alloc] initWithFrame:NSMakeRect(10, 10, 40, 60)];
+	[self.icon setImage:[NSImage imageNamed:[NSString stringWithFormat:@"icon_%ld",(long)kind]]];
+
+	[self addSubview:self.icon];
+}
+
+- (NSInteger)kind
+{
+	return _kind;
 }
 
 - (void)drawRect:(NSRect)dirtyRect

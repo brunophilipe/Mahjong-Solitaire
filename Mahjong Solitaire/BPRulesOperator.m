@@ -81,4 +81,11 @@
 	}
 }
 
++ (void)startNewGame
+{
+	BPRulesOperator *opr = [BPRulesOperator sharedInstance];
+
+	[opr->sharedBoard newGame];
+}
+
 @end

@@ -29,5 +29,6 @@
 + (void)setBoard:(BPGameBoard *)board;
 
 + (void)tryToSelectTile:(BPTile *)tile;
++ (void)startNewGame;
 
 @end

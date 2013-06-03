@@ -30,6 +30,7 @@ BPPoint BPMakePoint(CGFloat x, CGFloat y, CGFloat z);
 @interface BPTile : NSView
 
 @property (strong, nonatomic) NSTextField *label;
+@property (strong, nonatomic) NSImageView *icon;
 @property NSInteger kind;
 @property BPPoint coords;
 @property BOOL selected;

@@ -23,6 +23,8 @@
 
 @interface BPGameBoard : NSView
 
+- (void)newGame;
+
 - (BOOL)isTileSelectable:(BPTile *)tile;
 - (void)removeTile:(BPTile *)tile;
 

@@ -71,6 +71,8 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 		//Set background pattern
 		background_color = [NSColor colorWithPatternImage:[NSImage imageNamed:@"background"]];
 
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boardDidResize:) name:NSWindowDidResizeNotification object:nil];
+
 		[self newGame];
     }
     
@@ -89,6 +91,13 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 		{
 			for (NSUInteger x=0; x<MAX_HOR; x++)
 			{
+				if (tiles[z][y][x])
+				{
+					[tiles[z][y][x] removeFromSuperview];
+					
+					tiles[z][y][x] = nil;
+				}
+
 				if (tile_base[z][y][x])
 				{
 					auxTile = [[BPTile alloc] initWithFrame:[self calculateRectForTileInCoordX:x andY:y andZ:z]];
@@ -114,11 +123,12 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 	//Set kinds
 	NSMutableArray *kindsBase = [[NSMutableArray alloc] initWithCapacity:tilesCount];
 	for (NSUInteger i=0; i<tilesCount/2; i++) {
-		int kind = arc4random()%12;
+		int kind = arc4random()%15;
 		[kindsBase addObject:[NSNumber numberWithInt:kind]];
 		[kindsBase addObject:[NSNumber numberWithInt:kind]];
 	}
 
+	[kindsBase shuffle];
 	[kindsBase shuffle];
 
 	for (NSInteger z=MAX_UPW-1; z>=0; z--)
@@ -139,7 +149,7 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 		}
 	}
 
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boardDidResize:) name:NSWindowDidResizeNotification object:nil];
+	[self setNeedsDisplay:YES];
 }
 
 - (NSRect)calculateRectForTileInCoordX:(NSUInteger)x andY:(NSUInteger)y andZ:(NSUInteger)z

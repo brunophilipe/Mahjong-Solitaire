@@ -25,6 +25,7 @@
 @interface BPAppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
-@property (strong) IBOutlet NSImageView *backgroundView;
+
+- (IBAction)action_newGame:(id)sender;
 
 @end

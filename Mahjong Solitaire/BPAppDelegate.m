@@ -21,12 +21,23 @@
 
 #import "BPAppDelegate.h"
 #import "BPTile.h"
+#import "BPRulesOperator.h"
 
 @implementation BPAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 	// Insert code here to initialize your application
+}
+
+- (IBAction)action_newGame:(id)sender {
+	NSAlert *alert = [NSAlert alertWithMessageText:@"Start new Game" defaultButton:@"Yes" alternateButton:@"No" otherButton:nil informativeTextWithFormat:@"Are you sure you want to start a new game?"];
+	NSInteger ret = [alert runModal];
+
+	if (ret == 1) {
+		NSLog(@"Starting new game!");
+		[BPRulesOperator startNewGame];
+	}
 }
 
 @end
