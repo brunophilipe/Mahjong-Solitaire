@@ -35,7 +35,6 @@
 	NSInteger ret = [alert runModal];
 
 	if (ret == 1) {
-		NSLog(@"Starting new game!");
 		[BPRulesOperator startNewGame];
 	}
 }
