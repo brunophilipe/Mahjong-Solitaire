@@ -21,11 +21,17 @@
 
 #import <Cocoa/Cocoa.h>
 
+typedef struct{
+	CGFloat x,y,z;
+} BPPoint;
+
+BPPoint BPMakePoint(CGFloat x, CGFloat y, CGFloat z);
+
 @interface BPTile : NSView
 
 @property (strong, nonatomic) NSTextField *label;
 @property NSInteger kind;
-@property NSPoint coords;
+@property BPPoint coords;
 @property BOOL selected;
 
 @end

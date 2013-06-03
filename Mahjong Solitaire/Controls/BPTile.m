@@ -112,4 +112,14 @@
 
 void translPoint(NSPoint *p, int x, int y) { p->x += x; p->y += y; }
 
+BPPoint BPMakePoint(CGFloat x, CGFloat y, CGFloat z)
+{
+	BPPoint newpoint;
+	newpoint.x = x;
+	newpoint.y = y;
+	newpoint.z = z;
+
+	return newpoint;
+}
+
 @end

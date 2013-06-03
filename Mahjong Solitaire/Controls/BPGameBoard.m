@@ -25,21 +25,32 @@
 
 #define MAX_HOR 8
 #define MAX_VER 6
+#define MAX_UPW 2
 
 @implementation BPGameBoard
 {
-	BPTile *tiles[MAX_VER][MAX_HOR];
+	BPTile *tiles[MAX_UPW][MAX_VER][MAX_HOR];
 	NSColor *background_color;
 }
 
-BOOL tile_base[MAX_VER][MAX_HOR] =
+BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 {
-	{0,1,1,1,1,1,1,0},
-	{1,1,1,1,1,1,1,1},
-	{1,1,1,1,1,1,1,1},
-	{1,1,1,1,1,1,1,1},
-	{1,1,1,1,1,1,1,1},
-	{0,1,1,1,1,1,1,0}
+	{
+		{0,1,1,1,1,1,1,0},
+		{1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1},
+		{0,1,1,1,1,1,1,0}
+	},
+	{
+		{0,0,0,0,0,0,0,0},
+		{0,0,1,1,1,1,0,0},
+		{0,1,1,1,1,1,1,0},
+		{0,1,1,1,1,1,1,0},
+		{0,0,1,1,1,1,0,0},
+		{0,0,0,0,0,0,0,0}
+	}
 };
 
 - (id)initWithFrame:(NSRect)frame
@@ -63,21 +74,25 @@ BOOL tile_base[MAX_VER][MAX_HOR] =
 	BPTile *auxTile;
 	NSUInteger tilesCount = 0;
 
-	for (NSInteger y=MAX_VER-1; y>=0; y--)
+	
+	for (NSInteger z=MAX_UPW-1; z>=0; z--)
 	{
-		for (NSUInteger x=0; x<MAX_HOR; x++)
+		for (NSInteger y=MAX_VER-1; y>=0; y--)
 		{
-			if (tile_base[y][x])
+			for (NSUInteger x=0; x<MAX_HOR; x++)
 			{
-				auxTile = [[BPTile alloc] initWithFrame:[self calculateRectForTileInCoordX:x andY:y]];
-				[auxTile setCoords:NSMakePoint(x, y)];
-				[auxTile setKind:-1];
+				if (tile_base[z][y][x])
+				{
+					auxTile = [[BPTile alloc] initWithFrame:[self calculateRectForTileInCoordX:x andY:y andZ:z]];
+					[auxTile setCoords:BPMakePoint(x, y, z)];
+					[auxTile setKind:-1];
 
-				tiles[y][x] = auxTile;
+					tiles[z][y][x] = auxTile;
 
-				[self addSubview:auxTile positioned:NSWindowBelow relativeTo:nil];
+					[self addSubview:auxTile positioned:NSWindowBelow relativeTo:nil];
 
-				tilesCount++;
+					tilesCount++;
+				}
 			}
 		}
 	}
@@ -98,17 +113,20 @@ BOOL tile_base[MAX_VER][MAX_HOR] =
 
 	[kindsBase shuffle];
 
-	for (NSInteger y=MAX_VER-1; y>=0; y--)
+	for (NSInteger z=MAX_UPW-1; z>=0; z--)
 	{
-		for (NSUInteger x=0; x<MAX_HOR; x++)
+		for (NSInteger y=MAX_VER-1; y>=0; y--)
 		{
-			if (tiles[y][x])
+			for (NSUInteger x=0; x<MAX_HOR; x++)
 			{
-				int index = arc4random()%(kindsBase.count);
-				int kind = [(NSNumber *)[kindsBase objectAtIndex:index] intValue];
-				[(BPTile *)tiles[y][x] setKind:kind];
-				[[(BPTile *)tiles[y][x] label] setStringValue:[NSString stringWithFormat:@"%d",kind]];
-				[kindsBase removeObjectAtIndex:index];
+				if (tiles[z][y][x])
+				{
+					int index = arc4random()%(kindsBase.count);
+					int kind = [(NSNumber *)[kindsBase objectAtIndex:index] intValue];
+					[(BPTile *)tiles[z][y][x] setKind:kind];
+					[[(BPTile *)tiles[z][y][x] label] setStringValue:[NSString stringWithFormat:@"%d %ld",kind,(unsigned long)z]];
+					[kindsBase removeObjectAtIndex:index];
+				}
 			}
 		}
 	}
@@ -116,7 +134,7 @@ BOOL tile_base[MAX_VER][MAX_HOR] =
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boardDidResize:) name:NSWindowDidResizeNotification object:nil];
 }
 
-- (NSRect)calculateRectForTileInCoordX:(NSUInteger)x andY:(NSUInteger)y
+- (NSRect)calculateRectForTileInCoordX:(NSUInteger)x andY:(NSUInteger)y andZ:(NSUInteger)z
 {
 	NSUInteger width = [(NSNumber *)[BPGameSettings getSetting:BPGAME_TILE_SIZE_WIDTH] unsignedIntegerValue];
 	NSUInteger height = [(NSNumber *)[BPGameSettings getSetting:BPGAME_TILE_SIZE_HEIGHT] unsignedIntegerValue];
@@ -125,8 +143,8 @@ BOOL tile_base[MAX_VER][MAX_HOR] =
 	return
 	NSMakeRect
 	(
-		(self.frame.size.width/2) - (MAX_HOR*width/2) + x*(width-thickness),
-		(self.frame.size.height/2) + (MAX_VER*height/2) - (y+1.2)*(height-thickness),
+		(self.frame.size.width/2) - (MAX_HOR*width/2) + x*(width-thickness) + (z*thickness),
+		(self.frame.size.height/2) + (MAX_VER*height/2) - (y+1.2)*(height-thickness) + (z*thickness),
 		width,
 		height
 	);
@@ -136,14 +154,20 @@ BOOL tile_base[MAX_VER][MAX_HOR] =
 {
 	NSInteger x = tile.coords.x;
 	NSInteger y = tile.coords.y;
+	NSInteger z = tile.coords.z;
+
+	//Check up
+	if (!(z == MAX_UPW-1 || tiles[z+1][y][x] == nil)) {
+		return NO;
+	}
 
 	//Check left
-	if (x == 0 || tiles[y][x-1] == nil) {
+	if (x == 0 || tiles[z][y][x-1] == nil) {
 		return YES;
 	}
 
 	//Check right
-	if (x == MAX_HOR-1 || tiles[y][x+1] == nil) {
+	if (x == MAX_HOR-1 || tiles[z][y][x+1] == nil) {
 		return YES;
 	}
 
@@ -154,19 +178,22 @@ BOOL tile_base[MAX_VER][MAX_HOR] =
 {
 	[tile removeFromSuperview];
 
-	NSPoint coord = tile.coords;
+	BPPoint coord = tile.coords;
 
-	tiles[(int)coord.y][(int)coord.x] = nil;
+	tiles[(int)coord.z][(int)coord.y][(int)coord.x] = nil;
 }
 
 - (void)boardDidResize:(NSNotification *)n
 {
-	for (NSInteger y=MAX_VER-1; y>=0; y--)
+	for (NSUInteger z=0; z<MAX_UPW; z++)
 	{
-		for (NSUInteger x=0; x<MAX_HOR; x++)
+		for (NSInteger y=MAX_VER-1; y>=0; y--)
 		{
-			if (tiles[y][x]) {
-				[tiles[y][x] setFrame:[self calculateRectForTileInCoordX:x andY:y]];
+			for (NSUInteger x=0; x<MAX_HOR; x++)
+			{
+				if (tiles[z][y][x]) {
+					[tiles[z][y][x] setFrame:[self calculateRectForTileInCoordX:x andY:y andZ:z]];
+				}
 			}
 		}
 	}
