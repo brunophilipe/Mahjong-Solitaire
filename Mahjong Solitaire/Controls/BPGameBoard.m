@@ -154,15 +154,30 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 
 - (NSRect)calculateRectForTileInCoordX:(NSUInteger)x andY:(NSUInteger)y andZ:(NSUInteger)z
 {
-	NSUInteger width = [(NSNumber *)[BPGameSettings getSetting:BPGAME_TILE_SIZE_WIDTH] unsignedIntegerValue];
-	NSUInteger height = [(NSNumber *)[BPGameSettings getSetting:BPGAME_TILE_SIZE_HEIGHT] unsignedIntegerValue];
+//	NSUInteger width = [(NSNumber *)[BPGameSettings getSetting:BPGAME_TILE_SIZE_WIDTH] unsignedIntegerValue];
+//	NSUInteger height = [(NSNumber *)[BPGameSettings getSetting:BPGAME_TILE_SIZE_HEIGHT] unsignedIntegerValue];
+	NSUInteger frame_width = self.frame.size.width - 20;
+	NSUInteger frame_height = self.frame.size.height - 20;
 	NSUInteger thickness = [(NSNumber *)[BPGameSettings getSetting:BPGAME_TILE_SIZE_THICKNESS] unsignedIntegerValue];
+	NSUInteger width;
+	NSUInteger height;
+
+	if ((frame_width/MAX_HOR) >= (frame_height/MAX_VER)*0.7333)
+	{
+		height = (frame_height/MAX_VER) + thickness;
+		width = height*0.7333;
+	}
+	else
+	{
+		width = (frame_width/MAX_HOR) + thickness;
+		height = width*1.3636;
+	}
 
 	return
 	NSMakeRect
 	(
-		(self.frame.size.width/2) - (MAX_HOR*width/2) + x*(width-thickness) + (z*thickness),
-		(self.frame.size.height/2) + (MAX_VER*height/2) - (y+1.2)*(height-thickness) + (z*thickness),
+		(self.frame.size.width/2) - (MAX_HOR*width/2) + x*(width-thickness) + (z*thickness) + 15,
+		(self.frame.size.height/2) + (MAX_VER*height/2) - (y+1)*(height-thickness) + (z*thickness) - 20,
 		width,
 		height
 	);

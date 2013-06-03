@@ -49,8 +49,9 @@
 {
 	_kind = kind;
 
-	self.icon = [[NSImageView alloc] initWithFrame:NSMakeRect(10, 10, 40, 60)];
+	self.icon = [[NSImageView alloc] initWithFrame:NSMakeRect(15, 15, 35, 57)];
 	[self.icon setImage:[NSImage imageNamed:[NSString stringWithFormat:@"icon_%ld",(long)kind]]];
+	[self.icon setAutoresizingMask:NSViewMinXMargin | NSViewWidthSizable | NSViewMaxXMargin | NSViewMinYMargin | NSViewHeightSizable | NSViewMaxYMargin];
 
 	[self addSubview:self.icon];
 }
@@ -65,8 +66,10 @@
 	NSBezierPath	*path = [NSBezierPath bezierPath];
 	NSPoint			auxPoint;
 
-	int width		= [[BPGameSettings getSetting:BPGAME_TILE_SIZE_WIDTH] intValue];
-	int height		= [[BPGameSettings getSetting:BPGAME_TILE_SIZE_HEIGHT] intValue];
+//	int width		= [[BPGameSettings getSetting:BPGAME_TILE_SIZE_WIDTH] intValue];
+//	int height		= [[BPGameSettings getSetting:BPGAME_TILE_SIZE_HEIGHT] intValue];
+	int width		= self.frame.size.width;
+	int height		= self.frame.size.height;
 	int thickness	= [[BPGameSettings getSetting:BPGAME_TILE_SIZE_THICKNESS] intValue];
 
 	{// Draw left side
