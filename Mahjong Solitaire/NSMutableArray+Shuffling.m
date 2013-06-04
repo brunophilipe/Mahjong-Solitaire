@@ -32,7 +32,7 @@
 
 		for (NSUInteger j=0; j<4; j++) {
 			for (NSUInteger i = 0; i < count; i++) {
-				NSUInteger j = arc4random() % (count - 1);
+				NSUInteger j = (arc4random()%1000/1000.f * (count - 1));
 
 				if (j != i) {
 					[self exchangeObjectAtIndex:i withObjectAtIndex:j];

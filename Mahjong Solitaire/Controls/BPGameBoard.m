@@ -120,15 +120,38 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 		[[NSApplication sharedApplication] terminate:self];
 	}
 
+	#ifdef EXTRA_DEBUG //Debug used to test variablility of random tiles
+	NSInteger kindDebug[15];
+
+	for (NSInteger i=0; i<15; i++) {
+		kindDebug[i] = 0;
+	}
+	#endif
+
 	//Set kinds
 	NSMutableArray *kindsBase = [[NSMutableArray alloc] initWithCapacity:tilesCount];
 	for (NSUInteger i=0; i<tilesCount/2; i++) {
-		int kind = arc4random()%15;
+		int kind = (int)((arc4random()%1000)/1000.f * 15);
+
+		#ifdef EXTRA_DEBUG
+		kindDebug[kind]++;
+		#endif
+
 		[kindsBase addObject:[NSNumber numberWithInt:kind]];
 		[kindsBase addObject:[NSNumber numberWithInt:kind]];
 	}
 
-	[kindsBase shuffle];
+	#ifdef EXTRA_DEBUG
+	NSInteger total = 0;
+	
+	for (NSInteger i=0; i<15; i++) {
+		NSLog(@"Kind %ld count: %ld",(long)i,(long)kindDebug[i]);
+		total += kindDebug[i];
+	}
+
+	NSLog(@"Total Tiles: %ld\t Average Count: %.2f",(long)tilesCount,(float)total/15.0f);
+	#endif
+
 	[kindsBase shuffle];
 
 	for (NSInteger z=MAX_UPW-1; z>=0; z--)
