@@ -49,7 +49,11 @@
 {
 	_kind = kind;
 
-	self.icon = [[NSImageView alloc] initWithFrame:NSMakeRect(15, 15, 35, 57)];
+	NSUInteger thickness = [(NSNumber *)[BPGameSettings getSetting:BPGAME_TILE_SIZE_THICKNESS] unsignedIntegerValue];
+	NSUInteger width = self.frame.size.width;
+	NSUInteger height = self.frame.size.height;
+
+	self.icon = [[NSImageView alloc] initWithFrame:NSMakeRect(thickness + 5, thickness + 5, width-15, height-15)];
 	[self.icon setImage:[NSImage imageNamed:[NSString stringWithFormat:@"icon_%ld",(long)kind]]];
 	[self.icon setAutoresizingMask:NSViewMinXMargin | NSViewWidthSizable | NSViewMaxXMargin | NSViewMinYMargin | NSViewHeightSizable | NSViewMaxYMargin];
 
@@ -139,8 +143,8 @@
 	CGFloat brightness	= color.brightnessComponent;
 
 	for (NSUInteger i=0; i<it; i++) {
-		saturation *= 0.9;
-		brightness *= 1.1;
+		saturation *= 0.95;
+		brightness *= 1.05;
 	}
 
 	return [NSColor colorWithCalibratedHue:color.hueComponent saturation:saturation brightness:brightness alpha:color.alphaComponent];

@@ -23,9 +23,9 @@
 #import "BPRulesOperator.h"
 #import "NSMutableArray+Shuffling.h"
 
-#define MAX_HOR 8
-#define MAX_VER 6
-#define MAX_UPW 3
+#define MAX_HOR 10
+#define MAX_VER 8
+#define MAX_UPW 4
 
 @implementation BPGameBoard
 {
@@ -36,28 +36,44 @@
 BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 {
 	{
-		{0,1,1,1,1,1,1,0},
-		{1,1,1,1,1,1,1,1},
-		{1,1,1,1,1,1,1,1},
-		{1,1,1,1,1,1,1,1},
-		{1,1,1,1,1,1,1,1},
-		{0,1,1,1,1,1,1,0}
+		{0,1,1,1,1,1,1,1,1,0},
+		{1,1,1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1,1,1},
+		{0,1,1,1,1,1,1,1,1,0}
 	},
 	{
-		{0,0,0,0,0,0,0,0},
-		{0,0,1,1,1,1,0,0},
-		{0,1,1,1,1,1,1,0},
-		{0,1,1,1,1,1,1,0},
-		{0,0,1,1,1,1,0,0},
-		{0,0,0,0,0,0,0,0}
+		{0,0,0,0,0,0,0,0,0,0},
+		{0,0,1,1,1,1,1,1,0,0},
+		{0,1,1,1,1,1,1,1,1,0},
+		{0,1,1,1,1,1,1,1,1,0},
+		{0,1,1,1,1,1,1,1,1,0},
+		{0,1,1,1,1,1,1,1,1,0},
+		{0,0,1,1,1,1,1,1,0,0},
+		{0,0,0,0,0,0,0,0,0,0}
 	},
 	{
-		{0,0,0,0,0,0,0,0},
-		{0,0,0,0,0,0,0,0},
-		{0,0,0,1,1,0,0,0},
-		{0,0,0,1,1,0,0,0},
-		{0,0,0,0,0,0,0,0},
-		{0,0,0,0,0,0,0,0}
+		{0,0,0,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0,0,0},
+		{0,0,0,1,1,1,1,0,0,0},
+		{0,0,1,1,1,1,1,1,0,0},
+		{0,0,1,1,1,1,1,1,0,0},
+		{0,0,0,1,1,1,1,0,0,0},
+		{0,0,0,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0,0,0}
+	},
+	{
+		{0,0,0,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0,0,0},
+		{0,0,0,0,1,1,0,0,0,0},
+		{0,0,0,0,1,1,0,0,0,0},
+		{0,0,0,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0,0,0}
 	}
 };
 
@@ -120,37 +136,14 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 		[[NSApplication sharedApplication] terminate:self];
 	}
 
-	#ifdef EXTRA_DEBUG //Debug used to test variablility of random tiles
-	NSInteger kindDebug[15];
-
-	for (NSInteger i=0; i<15; i++) {
-		kindDebug[i] = 0;
-	}
-	#endif
-
 	//Set kinds
 	NSMutableArray *kindsBase = [[NSMutableArray alloc] initWithCapacity:tilesCount];
 	for (NSUInteger i=0; i<tilesCount/2; i++) {
 		int kind = (int)((arc4random()%1000)/1000.f * 15);
 
-		#ifdef EXTRA_DEBUG
-		kindDebug[kind]++;
-		#endif
-
 		[kindsBase addObject:[NSNumber numberWithInt:kind]];
 		[kindsBase addObject:[NSNumber numberWithInt:kind]];
 	}
-
-	#ifdef EXTRA_DEBUG
-	NSInteger total = 0;
-	
-	for (NSInteger i=0; i<15; i++) {
-		NSLog(@"Kind %ld count: %ld",(long)i,(long)kindDebug[i]);
-		total += kindDebug[i];
-	}
-
-	NSLog(@"Total Tiles: %ld\t Average Count: %.2f",(long)tilesCount,(float)total/15.0f);
-	#endif
 
 	[kindsBase shuffle];
 
