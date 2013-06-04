@@ -46,6 +46,7 @@
 		15943367175D46F500F3905F /* icon_13@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15943361175D46F500F3905F /* icon_13@2x.png */; };
 		15943368175D46F500F3905F /* icon_14.png in Resources */ = {isa = PBXBuildFile; fileRef = 15943362175D46F500F3905F /* icon_14.png */; };
 		15943369175D46F500F3905F /* icon_14@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15943363175D46F500F3905F /* icon_14@2x.png */; };
+		1594336B175D967A00F3905F /* icons-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1594336A175D967A00F3905F /* icons-license.txt */; };
 		15C52A301759A9A300152825 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C52A2F1759A9A300152825 /* Cocoa.framework */; };
 		15C52A3A1759A9A300152825 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15C52A381759A9A300152825 /* InfoPlist.strings */; };
 		15C52A3C1759A9A300152825 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C52A3B1759A9A300152825 /* main.m */; };
@@ -99,6 +100,7 @@
 		15943361175D46F500F3905F /* icon_13@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_13@2x.png"; path = "Images/icon_13@2x.png"; sourceTree = "<group>"; };
 		15943362175D46F500F3905F /* icon_14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_14.png; path = Images/icon_14.png; sourceTree = "<group>"; };
 		15943363175D46F500F3905F /* icon_14@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_14@2x.png"; path = "Images/icon_14@2x.png"; sourceTree = "<group>"; };
+		1594336A175D967A00F3905F /* icons-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "icons-license.txt"; path = "Images/icons-license.txt"; sourceTree = "<group>"; };
 		15C52A2C1759A9A300152825 /* Mahjong Solitaire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mahjong Solitaire.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15C52A2F1759A9A300152825 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		15C52A321759A9A300152825 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -143,6 +145,7 @@
 		15300094175ADC3C00193D50 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1594336A175D967A00F3905F /* icons-license.txt */,
 				15300099175ADE7600193D50 /* background.png */,
 				1530009A175ADE7600193D50 /* background@2x.png */,
 				1594332E175D422700F3905F /* icon_0.png */,
@@ -334,6 +337,7 @@
 				15943367175D46F500F3905F /* icon_13@2x.png in Resources */,
 				15943368175D46F500F3905F /* icon_14.png in Resources */,
 				15943369175D46F500F3905F /* icon_14@2x.png in Resources */,
+				1594336B175D967A00F3905F /* icons-license.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
