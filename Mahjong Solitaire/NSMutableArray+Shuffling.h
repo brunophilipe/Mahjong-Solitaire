@@ -20,8 +20,14 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Category that implements shuffling to NSMutableArray. To do so, call `shuffle`.
+ */
 @interface NSMutableArray (Shuffling)
 
+/**
+ Shuffles the receiver's child objects.
+ */
 - (void)shuffle;
 
 @end

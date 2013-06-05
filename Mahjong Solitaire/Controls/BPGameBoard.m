@@ -33,6 +33,9 @@
 	NSColor *background_color;
 }
 
+/**
+ `BOOL` reference matrix used to initialize the game. Maybe this can be read from a text file. In the to-do list.
+ */
 BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 {
 	{
@@ -100,7 +103,7 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 	BPTile *auxTile;
 	NSUInteger tilesCount = 0;
 
-	
+	//Initializes the tiles from the reference `BOOL` matrix. Note it does not set the kind. This is done later.
 	for (NSInteger z=MAX_UPW-1; z>=0; z--)
 	{
 		for (NSInteger y=MAX_VER-1; y>=0; y--)
@@ -118,7 +121,6 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 				{
 					auxTile = [[BPTile alloc] initWithFrame:[self calculateRectForTileInCoordX:x andY:y andZ:z]];
 					[auxTile setCoords:BPMakePoint(x, y, z)];
-					[auxTile setKind:-1];
 
 					tiles[z][y][x] = auxTile;
 
@@ -130,13 +132,14 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 		}
 	}
 
+	//Checks if the amount of tiles is correct. It should be an even number!
 	if (tilesCount%2 != 0) {
 		NSAlert *alert = [NSAlert alertWithMessageText:@"Configuration Error" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The quantity of initialized tiles must be an even number, there are %ld initialized tiles!",(unsigned long)tilesCount];
 		[alert runModal];
 		[[NSApplication sharedApplication] terminate:self];
 	}
 
-	//Set kinds
+	//Generates the kinds, pair by pair, then shuffles them.
 	NSMutableArray *kindsBase = [[NSMutableArray alloc] initWithCapacity:tilesCount];
 	for (NSUInteger i=0; i<tilesCount/2; i++) {
 		int kind = (int)((arc4random()%1000)/1000.f * 15);
@@ -144,9 +147,9 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 		[kindsBase addObject:[NSNumber numberWithInt:kind]];
 		[kindsBase addObject:[NSNumber numberWithInt:kind]];
 	}
-
 	[kindsBase shuffle];
 
+	//Now it set the kinds for each tile.
 	for (NSInteger z=MAX_UPW-1; z>=0; z--)
 	{
 		for (NSInteger y=MAX_VER-1; y>=0; y--)
@@ -165,9 +168,18 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 		}
 	}
 
+	//Finishes by telling the graphics server to re-render the view.
 	[self setNeedsDisplay:YES];
 }
 
+/**
+ Calculates the location of a tile based on its location and the tile default thickness.
+ 
+ @param x The tile's location in the X axis.
+ @param y The tile's location in the Y axis.
+ @param z The tile's location in the Z axis.
+ @returns NSRect with the size and location of the tile.
+ */
 - (NSRect)calculateRectForTileInCoordX:(NSUInteger)x andY:(NSUInteger)y andZ:(NSUInteger)z
 {
 //	NSUInteger width = [(NSNumber *)[BPGameSettings getSetting:BPGAME_TILE_SIZE_WIDTH] unsignedIntegerValue];
@@ -189,7 +201,7 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 		height = width*1.3636;
 	}
 
-	return
+	return //new line, just for eye sugaring
 	NSMakeRect
 	(
 		(self.frame.size.width/2) - (MAX_HOR*width/2) + x*(width-thickness) + (z*thickness) + 15,

@@ -21,11 +21,31 @@
 #import <Cocoa/Cocoa.h>
 #import "BPTile.h"
 
+/**
+ Class responsible for storing the state of the game-board and also used to display the game on the screen. The `BPTile` objects should not be manually added to this class' subviews, they are managed in a manner different from usual. To start a new game simply call `newGame`.
+ */
 @interface BPGameBoard : NSView
 
+/**
+ Clears the game-board and generates a new game.
+ */
 - (void)newGame;
 
+/**
+ Verifies if the parameter tile is selectable.
+ 
+ Note: The parameter passed is of type `BPTile` for convinience. This method does not verify if the parameter tile is an actual tile of the game, it just ferify its coordinates. Improvements in this class are in the to-do list.
+
+ @param tile Tile whose selectability should be verified.
+ @returns `YES` if the tile is selectable, otherwise `NO`.
+ */
 - (BOOL)isTileSelectable:(BPTile *)tile;
+
+/**
+ Removes the parameter tile from the game-board. This method does not verify if the parameter tile is an actual tile of the game, it just ferify its coordinates. Improvements in this class are in the to-do list.
+ 
+ @param tile The tile that should be removed from the board.
+ */
 - (void)removeTile:(BPTile *)tile;
 
 @end

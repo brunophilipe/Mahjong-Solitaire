@@ -21,18 +21,50 @@
 
 #import <Cocoa/Cocoa.h>
 
+/**
+ Three-float struct used to represent a coordinate in a 3D space.
+ */
 typedef struct{
 	CGFloat x,y,z;
 } BPPoint;
 
+/**
+ Factory for `BPPoint` struct.
+ */
 BPPoint BPMakePoint(CGFloat x, CGFloat y, CGFloat z);
 
+/**
+ Class responsible for storing the information of each tile, and also used to display the tile on the screen, since it is a subclass of `NSView`.
+ */
 @interface BPTile : NSView
 
+/**
+ Label used for debugging. Currently disabled.
+ */
 @property (strong, nonatomic) NSTextField *label;
-@property (strong, nonatomic) NSImageView *icon;
+
+/**
+ Displays the icon for the tile. This property is only setted by setting the `kind` property.
+ 
+ @note Read-only
+ */
+@property (strong, nonatomic, readonly) NSImageView *icon;
+
+/**
+ Stores the kind of the tile, currently varying from 0 to 14.
+ 
+ Setting this property also sets the `icon` property.
+ */
 @property NSInteger kind;
+
+/**
+ Stores the spatial location of the tile in the game board.
+ */
 @property BPPoint coords;
+
+/**
+ Stores whether or not the tile was selected by the user. Not used for game logic, only for drawing. 
+ */
 @property BOOL selected;
 
 @end

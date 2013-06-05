@@ -53,7 +53,7 @@
 	NSUInteger width = self.frame.size.width;
 	NSUInteger height = self.frame.size.height;
 
-	self.icon = [[NSImageView alloc] initWithFrame:NSMakeRect(thickness + 5, thickness + 5, width-15, height-15)];
+	_icon = [[NSImageView alloc] initWithFrame:NSMakeRect(thickness + 5, thickness + 5, width-15, height-15)];
 	[self.icon setImage:[NSImage imageNamed:[NSString stringWithFormat:@"icon_%ld",(long)kind]]];
 	[self.icon setAutoresizingMask:NSViewMinXMargin | NSViewWidthSizable | NSViewMaxXMargin | NSViewMinYMargin | NSViewHeightSizable | NSViewMaxYMargin];
 
