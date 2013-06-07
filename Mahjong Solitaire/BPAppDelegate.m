@@ -28,6 +28,10 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 	// Insert code here to initialize your application
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateStatusBar:) name:BP_UPDATE_STATUSBAR object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFreePairs:) name:BP_UPDATE_FREEPAIRS object:nil];
+
+	[[NSNotificationCenter defaultCenter] postNotificationName:BP_NEW_GAME object:self];
 }
 
 - (IBAction)action_newGame:(id)sender {
@@ -37,6 +41,38 @@
 	if (ret == 1) {
 		[BPRulesOperator startNewGame];
 	}
+}
+
+- (void)updateStatusBar:(NSNotification *)notif
+{
+	[self.label_status setHidden:NO];
+	NSString *msg = [[notif userInfo] objectForKey:BP_MESSAGE];
+	[self.label_status setStringValue:msg];
+
+	[self performSelector:@selector(clearStatusBar) withObject:nil afterDelay:1];
+}
+
+- (void)clearStatusBar
+{
+	NSBlockOperation *block = [NSBlockOperation blockOperationWithBlock:^{
+	   NSViewAnimation *anim = [[NSViewAnimation alloc] initWithViewAnimations:@[
+								@{
+													  NSViewAnimationTargetKey: self.label_status,
+												  NSViewAnimationStartFrameKey: [NSValue valueWithRect:self.label_status.frame],
+													NSViewAnimationEndFrameKey: [NSValue valueWithRect:self.label_status.frame],
+													  NSViewAnimationEffectKey: NSViewAnimationFadeOutEffect
+								}]];
+		[anim startAnimation];
+	}];
+	[block start];
+}
+
+- (void)updateFreePairs:(NSNotification *)notif
+{
+	NSUInteger freePairs = [BPRulesOperator calculateSelectablePairs];
+	[self.label_pairs setHidden:NO];
+	NSString *msg = [NSString stringWithFormat:@"%ld free pairs",(unsigned long)freePairs];
+	[self.label_pairs setStringValue:msg];
 }
 
 @end

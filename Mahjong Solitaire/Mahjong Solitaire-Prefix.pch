@@ -22,3 +22,8 @@
 #ifdef __OBJC__
 	#import <Cocoa/Cocoa.h>
 #endif
+
+#define BP_MESSAGE @"BP_MESSAGE"
+#define BP_UPDATE_STATUSBAR @"BP_UPDATE_STATUSBAR"
+#define BP_UPDATE_FREEPAIRS @"BP_UPDATE_FREEPAIRS"
+#define BP_NEW_GAME @"BP_NEW_GAME"

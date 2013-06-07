@@ -68,6 +68,8 @@
 			{
 				[opr->sharedBoard removeTile:opr->selected_prev];
 				[opr->sharedBoard removeTile:opr->selected_now];
+
+				[[NSNotificationCenter defaultCenter] postNotificationName:BP_UPDATE_FREEPAIRS object:self];
 			}
 			else
 			{
@@ -86,6 +88,11 @@
 	BPRulesOperator *opr = [BPRulesOperator sharedInstance];
 
 	[opr->sharedBoard newGame];
+}
+
++ (NSUInteger)calculateSelectablePairs
+{
+	return [[BPRulesOperator sharedInstance]->sharedBoard calculateSelectablePairs];
 }
 
 @end

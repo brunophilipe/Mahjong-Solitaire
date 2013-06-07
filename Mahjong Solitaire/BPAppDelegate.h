@@ -25,6 +25,8 @@
 @interface BPAppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
+@property (strong) IBOutlet NSTextField *label_status;
+@property (strong) IBOutlet NSTextField *label_pairs;
 
 - (IBAction)action_newGame:(id)sender;
 

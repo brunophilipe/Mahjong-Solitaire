@@ -91,8 +91,7 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 		background_color = [NSColor colorWithPatternImage:[NSImage imageNamed:@"background"]];
 
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boardDidResize:) name:NSWindowDidResizeNotification object:nil];
-
-		[self newGame];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newGame) name:BP_NEW_GAME object:nil];
     }
     
     return self;
@@ -170,6 +169,48 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 
 	//Finishes by telling the graphics server to re-render the view.
 	[self setNeedsDisplay:YES];
+
+	NSBlockOperation *block = [NSBlockOperation blockOperationWithBlock:^{
+		NSNotification *notif = [NSNotification notificationWithName:BP_UPDATE_STATUSBAR object:self userInfo:@{BP_MESSAGE: @"Game started!"}];
+		[[NSNotificationCenter defaultCenter] postNotification:notif];
+	}];
+	[block start];
+}
+
+- (NSUInteger)calculateSelectablePairs
+{
+	NSUInteger kinds[15];
+	NSUInteger pairs = 0;
+	BPTile *tile;
+
+	for (NSUInteger i=0; i<15; i++) {
+		kinds[i]=0;
+	}
+
+	for (NSUInteger z=0; z<MAX_UPW; z++)
+	{
+		for (NSUInteger y=0; y<MAX_VER; y++)
+		{
+			for (NSUInteger x=0; x<MAX_HOR; x++)
+			{
+				tile = tiles[z][y][x];
+				if (tile && [self isTileSelectable:tile])
+				{
+					kinds[tile.kind]++;
+				}
+			}
+		}
+	}
+
+	for (NSUInteger i=0; i<15; i++)
+	{
+		if (kinds[i] != 0 && kinds[i]%2 == 0)
+		{
+			pairs += kinds[i]/2;
+		}
+	}
+
+	return pairs;
 }
 
 /**

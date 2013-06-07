@@ -48,4 +48,11 @@
  */
 - (void)removeTile:(BPTile *)tile;
 
+/**
+ Calculates the amount of selectable tile pairs in the game. If this number is zero, it means the game is stuck.
+ 
+ @returns The number of selectable pairs.
+ */
+- (NSUInteger)calculateSelectablePairs;
+
 @end

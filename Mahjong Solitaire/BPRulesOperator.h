@@ -27,8 +27,9 @@
 + (BPRulesOperator *)sharedInstance;
 
 + (void)setBoard:(BPGameBoard *)board;
-
 + (void)tryToSelectTile:(BPTile *)tile;
 + (void)startNewGame;
+
++ (NSUInteger)calculateSelectablePairs;
 
 @end
