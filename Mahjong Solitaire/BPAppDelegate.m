@@ -71,7 +71,7 @@
 {
 	NSUInteger freePairs = [BPRulesOperator calculateSelectablePairs];
 	[self.label_pairs setHidden:NO];
-	NSString *msg = [NSString stringWithFormat:@"%ld free pairs",(unsigned long)freePairs];
+	NSString *msg = [NSString stringWithFormat:@"%ld possible moves",(unsigned long)freePairs];
 	[self.label_pairs setStringValue:msg];
 }
 

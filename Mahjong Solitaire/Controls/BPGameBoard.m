@@ -175,17 +175,15 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 		[[NSNotificationCenter defaultCenter] postNotification:notif];
 	}];
 	[block start];
+
+	[[NSNotificationCenter defaultCenter] postNotificationName:BP_UPDATE_FREEPAIRS object:self];
 }
 
 - (NSUInteger)calculateSelectablePairs
 {
-	NSUInteger kinds[15];
+	NSUInteger kinds[15] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	NSUInteger pairs = 0;
 	BPTile *tile;
-
-	for (NSUInteger i=0; i<15; i++) {
-		kinds[i]=0;
-	}
 
 	for (NSUInteger z=0; z<MAX_UPW; z++)
 	{
@@ -204,9 +202,9 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 
 	for (NSUInteger i=0; i<15; i++)
 	{
-		if (kinds[i] != 0 && kinds[i]%2 == 0)
+		if (kinds[i] != 0)
 		{
-			pairs += kinds[i]/2;
+			pairs += fat(kinds[i]-1);
 		}
 	}
 
@@ -318,6 +316,13 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 	[background_color set];
 
 	[path fill];
+}
+
+unsigned long fat(unsigned long input)
+{
+	if (input <= 0) return 0;
+	if (input == 1) return 1;
+	return input*fat(input-1);
 }
 
 @end
