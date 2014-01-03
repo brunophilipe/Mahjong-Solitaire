@@ -20,12 +20,13 @@
 
 #import "BPGameBoard.h"
 #import "BPGameSettings.h"
+#import "BPAppDelegate.h"
 #import "BPRulesOperator.h"
 #import "NSMutableArray+Shuffling.h"
 
 #define MAX_HOR 10
 #define MAX_VER 8
-#define MAX_UPW 4
+#define MAX_UPW 3
 
 @implementation BPGameBoard
 {
@@ -38,16 +39,16 @@
  */
 BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 {
-	{
-		{0,1,1,1,1,1,1,1,1,0},
-		{1,1,1,1,1,1,1,1,1,1},
-		{1,1,1,1,1,1,1,1,1,1},
-		{1,1,1,1,1,1,1,1,1,1},
-		{1,1,1,1,1,1,1,1,1,1},
-		{1,1,1,1,1,1,1,1,1,1},
-		{1,1,1,1,1,1,1,1,1,1},
-		{0,1,1,1,1,1,1,1,1,0}
-	},
+//	{
+//		{0,1,1,1,1,1,1,1,1,0},
+//		{1,1,1,1,1,1,1,1,1,1},
+//		{1,1,1,1,1,1,1,1,1,1},
+//		{1,1,1,1,1,1,1,1,1,1},
+//		{1,1,1,1,1,1,1,1,1,1},
+//		{1,1,1,1,1,1,1,1,1,1},
+//		{1,1,1,1,1,1,1,1,1,1},
+//		{0,1,1,1,1,1,1,1,1,0}
+//	},
 	{
 		{0,0,0,0,0,0,0,0,0,0},
 		{0,0,1,1,1,1,1,1,0,0},
@@ -204,7 +205,8 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 	{
 		if (kinds[i] != 0)
 		{
-			pairs += fat(kinds[i]-1);
+			//The number of non-directed connections between n numbers is equal to the nth-1 tringular number, calculated by (n*(n+1))/2.
+			pairs += triangular(kinds[i]-1);
 		}
 	}
 
@@ -274,6 +276,29 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 	return NO;
 }
 
+- (NSUInteger)calculatePlacedTiles
+{
+	BPTile *tile;
+	NSUInteger count = 0;
+
+	for (NSUInteger z=0; z<MAX_UPW; z++)
+	{
+		for (NSUInteger y=0; y<MAX_VER; y++)
+		{
+			for (NSUInteger x=0; x<MAX_HOR; x++)
+			{
+				tile = tiles[z][y][x];
+				if (tile)
+				{
+					count++;
+				}
+			}
+		}
+	}
+
+	return count;
+}
+
 - (void)removeTile:(BPTile *)tile
 {
 	[tile removeFromSuperview];
@@ -318,11 +343,9 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 	[path fill];
 }
 
-unsigned long fat(unsigned long input)
+unsigned long triangular(unsigned long input)
 {
-	if (input <= 0) return 0;
-	if (input == 1) return 1;
-	return input*fat(input-1);
+	return (input*(input+1))/2;
 }
 
 @end

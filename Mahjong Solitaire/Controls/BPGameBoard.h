@@ -55,4 +55,6 @@
  */
 - (NSUInteger)calculateSelectablePairs;
 
+- (NSUInteger)calculatePlacedTiles;
+
 @end

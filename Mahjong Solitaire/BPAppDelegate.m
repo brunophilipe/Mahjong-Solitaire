@@ -39,6 +39,7 @@
 	NSInteger ret = [alert runModal];
 
 	if (ret == 1) {
+		[self.window makeKeyAndOrderFront:self];
 		[BPRulesOperator startNewGame];
 	}
 }
@@ -57,10 +58,10 @@
 	NSBlockOperation *block = [NSBlockOperation blockOperationWithBlock:^{
 	   NSViewAnimation *anim = [[NSViewAnimation alloc] initWithViewAnimations:@[
 								@{
-													  NSViewAnimationTargetKey: self.label_status,
-												  NSViewAnimationStartFrameKey: [NSValue valueWithRect:self.label_status.frame],
-													NSViewAnimationEndFrameKey: [NSValue valueWithRect:self.label_status.frame],
-													  NSViewAnimationEffectKey: NSViewAnimationFadeOutEffect
+									  NSViewAnimationTargetKey: self.label_status,
+								  NSViewAnimationStartFrameKey: [NSValue valueWithRect:self.label_status.frame],
+									NSViewAnimationEndFrameKey: [NSValue valueWithRect:self.label_status.frame],
+									  NSViewAnimationEffectKey: NSViewAnimationFadeOutEffect
 								}]];
 		[anim startAnimation];
 	}];
@@ -73,6 +74,24 @@
 	[self.label_pairs setHidden:NO];
 	NSString *msg = [NSString stringWithFormat:@"%ld possible moves",(unsigned long)freePairs];
 	[self.label_pairs setStringValue:msg];
+
+	if (freePairs == 0) {
+		NSString *title;
+		NSString *message;
+
+		if ([BPRulesOperator calculatePlacedTiles] > 0) {
+			title = @"Oh no!";
+			message = @"There are no more possible moves.";
+		} else {
+			title = @"Congratulations!";
+			message = @"You finished the game successfully!";
+		}
+
+		NSAlert *alert = [NSAlert alertWithMessageText:title defaultButton:@"New Game" alternateButton:nil otherButton:nil informativeTextWithFormat:@"%@", message];
+		if ([alert runModal] == NSAlertDefaultReturn) {
+			[BPRulesOperator startNewGame];
+		}
+	}
 }
 
 @end

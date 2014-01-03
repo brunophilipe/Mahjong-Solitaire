@@ -31,5 +31,6 @@
 + (void)startNewGame;
 
 + (NSUInteger)calculateSelectablePairs;
++ (NSUInteger)calculatePlacedTiles;
 
 @end

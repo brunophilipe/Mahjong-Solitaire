@@ -51,6 +51,7 @@
 	opr->sharedBoard = board;
 }
 
+
 + (void)tryToSelectTile:(BPTile *)tile
 {
 	BPRulesOperator *opr = [BPRulesOperator sharedInstance];
@@ -93,6 +94,11 @@
 + (NSUInteger)calculateSelectablePairs
 {
 	return [[BPRulesOperator sharedInstance]->sharedBoard calculateSelectablePairs];
+}
+
++ (NSUInteger)calculatePlacedTiles
+{
+	return [[BPRulesOperator sharedInstance]->sharedBoard calculatePlacedTiles];
 }
 
 @end
