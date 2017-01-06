@@ -26,7 +26,7 @@
 
 #define MAX_HOR 10
 #define MAX_VER 8
-#define MAX_UPW 3
+#define MAX_UPW 4
 
 @implementation BPGameBoard
 {
@@ -39,16 +39,16 @@
  */
 BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 {
-//	{
-//		{0,1,1,1,1,1,1,1,1,0},
-//		{1,1,1,1,1,1,1,1,1,1},
-//		{1,1,1,1,1,1,1,1,1,1},
-//		{1,1,1,1,1,1,1,1,1,1},
-//		{1,1,1,1,1,1,1,1,1,1},
-//		{1,1,1,1,1,1,1,1,1,1},
-//		{1,1,1,1,1,1,1,1,1,1},
-//		{0,1,1,1,1,1,1,1,1,0}
-//	},
+	{
+		{0,1,1,1,1,1,1,1,1,0},
+		{1,1,1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1,1,1},
+		{0,1,1,1,1,1,1,1,1,0}
+	},
 	{
 		{0,0,0,0,0,0,0,0,0,0},
 		{0,0,1,1,1,1,1,1,0,0},
@@ -92,8 +92,14 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 		//Set background pattern
 		background_color = [NSColor colorWithPatternImage:[NSImage imageNamed:@"background"]];
 
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boardDidResize:) name:NSWindowDidResizeNotification object:nil];
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newGame) name:BP_NEW_GAME object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self
+												 selector:@selector(boardDidResize:)
+													 name:NSWindowDidResizeNotification object:nil];
+
+		[[NSNotificationCenter defaultCenter] addObserver:self
+												 selector:@selector(newGame)
+													 name:BP_NEW_GAME
+												   object:nil];
     }
     
     return self;
