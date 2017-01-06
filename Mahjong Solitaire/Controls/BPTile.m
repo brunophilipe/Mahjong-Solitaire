@@ -31,15 +31,8 @@
 - (id)initWithFrame:(NSRect)frameRect
 {
 	self = [super initWithFrame:frameRect];
-	if (self) {
-		//Initialize here
-		/*
-		self.label = [[NSTextField alloc] initWithFrame:NSMakeRect(10, 10, 40, 20)];
-		[self.label setEditable:NO];
-		[self.label setBordered:NO];
-		[self addSubview:self.label];
-		 */
-
+	if (self)
+	{
 		self.selected = NO;
 	}
 	return self;
@@ -70,13 +63,12 @@
 	NSBezierPath	*path = [NSBezierPath bezierPath];
 	NSPoint			auxPoint;
 
-//	int width		= [[BPGameSettings getSetting:BPGAME_TILE_SIZE_WIDTH] intValue];
-//	int height		= [[BPGameSettings getSetting:BPGAME_TILE_SIZE_HEIGHT] intValue];
 	int width		= self.frame.size.width;
 	int height		= self.frame.size.height;
 	int thickness	= [[BPGameSettings getSetting:BPGAME_TILE_SIZE_THICKNESS] intValue];
 
-	{// Draw left side
+	{
+		// Draw left side
 		auxPoint = NSMakePoint(self.bounds.origin.x, self.bounds.origin.y);
 		[path moveToPoint:auxPoint];
 		translPoint(&auxPoint, 0, height - thickness);
@@ -93,7 +85,8 @@
 		[path stroke];
 	}
 	[path removeAllPoints];
-	{// Draw bottom side
+	{
+		// Draw bottom side
 		auxPoint = NSMakePoint(self.bounds.origin.x, self.bounds.origin.y);
 		[path moveToPoint:auxPoint];
 		translPoint(&auxPoint, width - thickness, 0);
@@ -108,7 +101,8 @@
 		[path fill];
 	}
 	[path removeAllPoints];
-	{// Draw face
+	{
+		// Draw face
 		auxPoint = NSMakePoint(self.bounds.origin.x + thickness, self.bounds.origin.y + thickness);
 		[path moveToPoint:auxPoint];
 		translPoint(&auxPoint, width - thickness, 0);
@@ -119,8 +113,11 @@
 		[path lineToPoint:auxPoint];
 		translPoint(&auxPoint, 0, -height + thickness);
 		[path lineToPoint:auxPoint];
-		[[self lightenColor:(NSColor *)[BPGameSettings getSetting:(self.selected ? BPGAME_TILE_COLOR_SELECTED : BPGAME_TILE_COLOR_FACE)] iterations:self.coords.z] set];
+
+		BPGAME_SETTINGS setting = self.selected ? BPGAME_TILE_COLOR_SELECTED : BPGAME_TILE_COLOR_FACE;
+		[[self lightenColor:(NSColor *)[BPGameSettings getSetting:setting] iterations:self.coords.z] set];
 		[path fill];
+
 		[(NSColor *)[BPGameSettings getSetting:BPGAME_TILE_COLOR_LINE] set];
 		[path stroke];
 	}
@@ -132,7 +129,8 @@
 	NSPoint event_location = [theEvent locationInWindow];
 	NSPoint local_point = [self convertPoint:event_location fromView:nil];
 
-	if (local_point.x > thickness && local_point.y > thickness) {
+	if (local_point.x > thickness && local_point.y > thickness)
+	{
 		[BPRulesOperator tryToSelectTile:self];
 	}
 }
@@ -142,12 +140,16 @@
 	CGFloat saturation	= color.saturationComponent;
 	CGFloat brightness	= color.brightnessComponent;
 
-	for (NSUInteger i=0; i<it; i++) {
+	for (NSUInteger i=0; i<it; i++)
+	{
 		saturation *= 0.95;
 		brightness *= 1.05;
 	}
 
-	return [NSColor colorWithCalibratedHue:color.hueComponent saturation:saturation brightness:brightness alpha:color.alphaComponent];
+	return [NSColor colorWithCalibratedHue:color.hueComponent
+								saturation:saturation
+								brightness:brightness
+									 alpha:color.alphaComponent];
 }
 
 void translPoint(NSPoint *p, int x, int y) { p->x += x; p->y += y; }

@@ -84,7 +84,8 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 - (id)initWithFrame:(NSRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
+    if (self)
+	{
         // Initialization code here.
 		[BPRulesOperator setBoard:self];
 
@@ -103,7 +104,7 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 	BPTile *auxTile;
 	NSUInteger tilesCount = 0;
 
-	//Initializes the tiles from the reference `BOOL` matrix. Note it does not set the kind. This is done later.
+	//Initializes the tiles from the reference `BOOL` matrix. Note it does not set the tile kind. This is done later.
 	for (NSInteger z=MAX_UPW-1; z>=0; z--)
 	{
 		for (NSInteger y=MAX_VER-1; y>=0; y--)
@@ -113,7 +114,6 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 				if (tiles[z][y][x])
 				{
 					[tiles[z][y][x] removeFromSuperview];
-					
 					tiles[z][y][x] = nil;
 				}
 
@@ -133,15 +133,21 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 	}
 
 	//Checks if the amount of tiles is correct. It should be an even number!
-	if (tilesCount%2 != 0) {
-		NSAlert *alert = [NSAlert alertWithMessageText:@"Configuration Error" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The quantity of initialized tiles must be an even number, there are %ld initialized tiles!",(unsigned long)tilesCount];
+	if (tilesCount%2 != 0)
+	{
+		NSAlert *alert = [NSAlert alertWithMessageText:@"Configuration Error"
+										 defaultButton:@"OK"
+									   alternateButton:nil
+										   otherButton:nil
+							 informativeTextWithFormat:@"The quantity of initialized tiles must be an even number, there are %ld initialized tiles!",(unsigned long)tilesCount];
 		[alert runModal];
 		[[NSApplication sharedApplication] terminate:self];
 	}
 
 	//Generates the kinds, pair by pair, then shuffles them.
 	NSMutableArray *kindsBase = [[NSMutableArray alloc] initWithCapacity:tilesCount];
-	for (NSUInteger i=0; i<tilesCount/2; i++) {
+	for (NSUInteger i=0; i<tilesCount/2; i++)
+	{
 		int kind = (int)((arc4random()%1000)/1000.f * 15);
 
 		[kindsBase addObject:[NSNumber numberWithInt:kind]];
@@ -171,8 +177,12 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 	//Finishes by telling the graphics server to re-render the view.
 	[self setNeedsDisplay:YES];
 
-	NSBlockOperation *block = [NSBlockOperation blockOperationWithBlock:^{
-		NSNotification *notif = [NSNotification notificationWithName:BP_UPDATE_STATUSBAR object:self userInfo:@{BP_MESSAGE: @"Game started!"}];
+	NSBlockOperation *block = [NSBlockOperation blockOperationWithBlock:^
+	{
+		NSNotification *notif = [NSNotification notificationWithName:BP_UPDATE_STATUSBAR
+															  object:self
+															userInfo:@{BP_MESSAGE: @"Game started!"}];
+
 		[[NSNotificationCenter defaultCenter] postNotification:notif];
 	}];
 	[block start];
@@ -223,8 +233,6 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
  */
 - (NSRect)calculateRectForTileInCoordX:(NSUInteger)x andY:(NSUInteger)y andZ:(NSUInteger)z
 {
-//	NSUInteger width = [(NSNumber *)[BPGameSettings getSetting:BPGAME_TILE_SIZE_WIDTH] unsignedIntegerValue];
-//	NSUInteger height = [(NSNumber *)[BPGameSettings getSetting:BPGAME_TILE_SIZE_HEIGHT] unsignedIntegerValue];
 	NSUInteger frame_width = self.frame.size.width - 20;
 	NSUInteger frame_height = self.frame.size.height - 20;
 	NSUInteger thickness = [(NSNumber *)[BPGameSettings getSetting:BPGAME_TILE_SIZE_THICKNESS] unsignedIntegerValue];
@@ -259,17 +267,20 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 	NSInteger z = tile.coords.z;
 
 	//Check up
-	if (!(z == MAX_UPW-1 || tiles[z+1][y][x] == nil)) {
+	if (!(z == MAX_UPW-1 || tiles[z+1][y][x] == nil))
+	{
 		return NO;
 	}
 
 	//Check left
-	if (x == 0 || tiles[z][y][x-1] == nil) {
+	if (x == 0 || tiles[z][y][x-1] == nil)
+	{
 		return YES;
 	}
 
 	//Check right
-	if (x == MAX_HOR-1 || tiles[z][y][x+1] == nil) {
+	if (x == MAX_HOR-1 || tiles[z][y][x+1] == nil)
+	{
 		return YES;
 	}
 
@@ -316,7 +327,8 @@ BOOL tile_base[MAX_UPW][MAX_VER][MAX_HOR] =
 		{
 			for (NSUInteger x=0; x<MAX_HOR; x++)
 			{
-				if (tiles[z][y][x]) {
+				if (tiles[z][y][x])
+				{
 					[tiles[z][y][x] setFrame:[self calculateRectForTileInCoordX:x andY:y andZ:z]];
 				}
 			}

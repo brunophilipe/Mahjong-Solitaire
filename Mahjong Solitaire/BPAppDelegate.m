@@ -34,11 +34,17 @@
 	[[NSNotificationCenter defaultCenter] postNotificationName:BP_NEW_GAME object:self];
 }
 
-- (IBAction)action_newGame:(id)sender {
-	NSAlert *alert = [NSAlert alertWithMessageText:@"Start new Game" defaultButton:@"Yes" alternateButton:@"No" otherButton:nil informativeTextWithFormat:@"Are you sure you want to start a new game?"];
+- (IBAction)action_newGame:(id)sender
+{
+	NSAlert *alert = [NSAlert alertWithMessageText:@"Start new Game"
+									 defaultButton:@"Yes"
+								   alternateButton:@"No"
+									   otherButton:nil
+						 informativeTextWithFormat:@"Are you sure you want to start a new game?"];
 	NSInteger ret = [alert runModal];
 
-	if (ret == 1) {
+	if (ret == 1)
+	{
 		[self.window makeKeyAndOrderFront:self];
 		[BPRulesOperator startNewGame];
 	}
@@ -55,7 +61,8 @@
 
 - (void)clearStatusBar
 {
-	NSBlockOperation *block = [NSBlockOperation blockOperationWithBlock:^{
+	NSBlockOperation *block = [NSBlockOperation blockOperationWithBlock:^
+	{
 	   NSViewAnimation *anim = [[NSViewAnimation alloc] initWithViewAnimations:@[
 								@{
 									  NSViewAnimationTargetKey: self.label_status,

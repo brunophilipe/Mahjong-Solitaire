@@ -30,7 +30,8 @@
 {
 	static BPRulesOperator *instance;
 	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
+	dispatch_once(&onceToken, ^
+	{
 		instance = [[BPRulesOperator alloc] init];
 	});
 	return instance;
@@ -56,7 +57,8 @@
 {
 	BPRulesOperator *opr = [BPRulesOperator sharedInstance];
 
-	if ([opr->sharedBoard isTileSelectable:tile]) {
+	if ([opr->sharedBoard isTileSelectable:tile])
+	{
 		[tile setSelected:YES];
 		[opr->sharedBoard setNeedsDisplay:YES];
 
@@ -87,7 +89,6 @@
 + (void)startNewGame
 {
 	BPRulesOperator *opr = [BPRulesOperator sharedInstance];
-
 	[opr->sharedBoard newGame];
 }
 

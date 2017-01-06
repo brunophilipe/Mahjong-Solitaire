@@ -31,7 +31,8 @@
 {
 	static BPGameSettings *instance;
 	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
+	dispatch_once(&onceToken, ^
+	{
 		instance = [[BPGameSettings alloc] init];
 	});
 	return instance;
@@ -40,7 +41,8 @@
 - (id)init
 {
 	self = [super init];
-	if (self) {
+	if (self)
+	{
 		tile_color_side = [NSColor colorWithSRGBRed:0.87 green:0.84 blue:0.75 alpha:1.0];
 		tile_color_bott = [NSColor colorWithSRGBRed:0.59 green:0.57 blue:0.50 alpha:1.0];
 		tile_color_frnt = [NSColor colorWithSRGBRed:0.82 green:0.81 blue:0.77 alpha:1.0];
@@ -54,11 +56,12 @@
 	return self;
 }
 
-+ (id)getSetting:(BPGAME_SETTINGS)sett
++ (id)getSetting:(BPGAME_SETTINGS)setting
 {
 	BPGameSettings *settings = [BPGameSettings sharedInstance];
 
-	switch (sett) {
+	switch (setting)
+	{
 		case BPGAME_TILE_COLOR_BOTTOM:
 			return settings->tile_color_bott;
 

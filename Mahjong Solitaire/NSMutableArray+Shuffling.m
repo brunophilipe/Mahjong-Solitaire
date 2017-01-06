@@ -22,20 +22,30 @@
 
 @implementation NSMutableArray (Shuffling)
 
-- (void)shuffle {
-    @synchronized(self) {
+- (void)shuffle
+{
+    @synchronized(self)
+	{
         NSUInteger count = [self count];
 
-        if (count < 2) {
+        if (count < 2)
+		{
             return;
         }
 
-		for (NSUInteger j=0; j<4; j++) {
-			for (NSUInteger i = 0; i < count; i++) {
-				NSUInteger j = (arc4random()%1000/1000.f * (count - 1));
+		// Four passes
+		for (NSUInteger j=0; j<4; j++)
+		{
+			// Iterate over all objects
+			for (NSUInteger i = 0; i < count; i++)
+			{
+				// Pick a new position for the object in the array
+				NSUInteger k = (arc4random()%1000/1000.f * (count - 1));
 
-				if (j != i) {
-					[self exchangeObjectAtIndex:i withObjectAtIndex:j];
+				// If it's a different position than the current, exchange the objects in those indexes
+				if (k != i)
+				{
+					[self exchangeObjectAtIndex:i withObjectAtIndex:k];
 				}
 			}
 		}

@@ -24,7 +24,8 @@
 /**
  Three-float struct used to represent a coordinate in a 3D space.
  */
-typedef struct{
+typedef struct
+{
 	CGFloat x,y,z;
 } BPPoint;
 
